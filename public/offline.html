@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Odisha Education Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .offline-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .features h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .feature-item::before {
+            content: "✓";
+            background: #4ade80;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .retry-button {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(74, 222, 128, 0.4);
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .online {
+            background: rgba(74, 222, 128, 0.2);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+        
+        .offline {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .games-available {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .games-available h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .game-item {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 5px;
+        }
+        
+        .language-selector select {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .language-selector option {
+            background: #667eea;
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .offline-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .offline-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="od">ଓଡ଼ିଆ</option>
+            <option value="hi">हिंदी</option>
+        </select>
+    </div>
+
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        
+        <h1 id="title">You're Offline</h1>
+        
+        <p class="subtitle" id="subtitle">
+            Don't worry! You can still access your games and continue learning even without an internet connection.
+        </p>
+        
+        <div class="features">
+            <h3 id="featuresTitle">Available Offline:</h3>
+            <div class="feature-item" id="feature1">Play downloaded games</div>
+            <div class="feature-item" id="feature2">View your progress and achievements</div>
+            <div class="feature-item" id="feature3">Continue learning with cached content</div>
+            <div class="feature-item" id="feature4">Your progress will sync when online</div>
+        </div>
+        
+        <div class="games-available">
+            <h4 id="gamesTitle">🎮 Games Ready to Play:</h4>
+            <div class="game-item">🔢 Math Games</div>
+            <div class="game-item">🔬 Science Labs</div>
+            <div class="game-item">🏛️ Odia Culture</div>
+            <div class="game-item">📚 Language Games</div>
+            <div class="game-item">⚡ Technology</div>
+            <div class="game-item">🌉 Engineering</div>
+        </div>
+        
+        <button class="retry-button" onclick="checkConnection()" id="retryButton">
+            Check Connection
+        </button>
+        
+        <div class="status offline" id="status">
+            <strong id="statusText">Status: Offline Mode</strong><br>
+            <span id="statusDesc">Your progress is being saved locally and will sync when you're back online.</span>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                title: "You're Offline",
+                subtitle: "Don't worry! You can still access your games and continue learning even without an internet connection.",
+                featuresTitle: "Available Offline:",
+                feature1: "Play downloaded games",
+                feature2: "View your progress and achievements", 
+                feature3: "Continue learning with cached content",
+                feature4: "Your progress will sync when online",
+                gamesTitle: "🎮 Games Ready to Play:",
+                retryButton: "Check Connection",
+                statusTextOffline: "Status: Offline Mode",
+                statusTextOnline: "Status: Back Online!",
+                statusDescOffline: "Your progress is being saved locally and will sync when you're back online.",
+                statusDescOnline: "Great! You're connected again. Click below to return to the platform."
+            },
+            od: {
+                title: "ଆପଣ ଅଫଲାଇନ୍ ଅଛନ୍ତି",
+                subtitle: "ଚିନ୍ତା କରନ୍ତୁ ନାହିଁ! ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ବିନା ମଧ୍ୟ ଆପଣ ଖେଳ ଖେଳି ଶିଖିବା ଜାରି ରଖିପାରିବେ।",
+                featuresTitle: "ଅଫଲାଇନ୍‌ରେ ଉପଲବ୍ଧ:",
+                feature1: "ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଖେଳ ଖେଳନ୍ତୁ",
+                feature2: "ଆପଣଙ୍କ ଅଗ୍ରଗତି ଏବଂ ସଫଳତା ଦେଖନ୍ତୁ",
+                feature3: "କ୍ୟାସ୍ ହୋଇଥିବା ବିଷୟବସ୍ତୁ ସହିତ ଶିଖିବା ଜାରି ରଖନ୍ତୁ",
+                feature4: "ଅନଲାଇନ୍ ହେଲେ ଆପଣଙ୍କ ଅଗ୍ରଗତି ସିଙ୍କ ହେବ",
+                gamesTitle: "🎮 ଖେଳିବାକୁ ପ୍ରସ୍ତୁତ ଖେଳଗୁଡ଼ିକ:",
+                retryButton: "ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ",
+                statusTextOffline: "ସ୍ଥିତି: ଅଫଲାଇନ୍ ମୋଡ୍",
+                statusTextOnline: "ସ୍ଥିତି: ପୁନର୍ବାର ଅନଲାଇନ୍!",
+                statusDescOffline: "ଆପଣଙ୍କ ଅଗ୍ରଗତି ସ୍ଥାନୀୟ ଭାବରେ ସଞ୍ଚୟ ହେଉଛି ଏବଂ ଆପଣ ଅନଲାଇନ୍ ଫେରିଲେ ସିଙ୍କ ହେବ।",
+                statusDescOnline: "ବହୁତ ଭଲ! ଆପଣ ପୁନର୍ବାର ସଂଯୁକ୍ତ ହୋଇଛନ୍ତି। ପ୍ଲାଟଫର୍ମକୁ ଫେରିବା ପାଇଁ ନିମ୍ନରେ କ୍ଲିକ୍ କରନ୍ତୁ।"
+            },
+            hi: {
+                title: "आप ऑफलाइन हैं",
+                subtitle: "चिंता न करें! आप इंटरनेट कनेक्शन के बिना भी अपने गेम्स खेल सकते हैं और सीखना जारी रख सकते हैं।",
+                featuresTitle: "ऑफलाइन उपलब्ध:",
+                feature1: "डाउनलोड किए गए गेम्स खेलें",
+                feature2: "अपनी प्रगति और उपलब्धियां देखें",
+                feature3: "कैश्ड कंटेंट के साथ सीखना जारी रखें", 
+                feature4: "ऑनलाइन होने पर आपकी प्रगति सिंक होगी",
+                gamesTitle: "🎮 खेलने के लिए तैयार गेम्स:",
+                retryButton: "कनेक्शन जांचें",
+                statusTextOffline: "स्थिति: ऑफलाइन मोड",
+                statusTextOnline: "स्थिति: वापस ऑनलाइन!",
+                statusDescOffline: "आपकी प्रगति स्थानीय रूप से सेव हो रही है और ऑनलाइन होने पर सिंक होगी।",
+                statusDescOnline: "बहुत बढ़िया! आप फिर से जुड़ गए हैं। प्लेटफॉर्म पर वापस जाने के लिए नीचे क्लिक करें।"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Change language function
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            currentLanguage = select.value;
+            updateText();
+        }
+
+        // Update text based on current language
+        function updateText() {
+            const t = translations[currentLanguage];
+            
+            document.getElementById('title').textContent = t.title;
+            document.getElementById('subtitle').textContent = t.subtitle;
+            document.getElementById('featuresTitle').textContent = t.featuresTitle;
+            document.getElementById('feature1').textContent = t.feature1;
+            document.getElementById('feature2').textContent = t.feature2;
+            document.getElementById('feature3').textContent = t.feature3;
+            document.getElementById('feature4').textContent = t.feature4;
+            document.getElementById('gamesTitle').textContent = t.gamesTitle;
+            document.getElementById('retryButton').textContent = t.retryButton;
+            
+            updateStatus();
+        }
+
+        // Update status based on connection
+        function updateStatus() {
+            const status = document.getElementById('status');
+            const statusText = document.getElementById('statusText');
+            const statusDesc = document.getElementById('statusDesc');
+            const t = translations[currentLanguage];
+            
+            if (navigator.onLine) {
+                status.className = 'status online';
+                statusText.textContent = t.statusTextOnline;
+                statusDesc.textContent = t.statusDescOnline;
+                document.getElementById('retryButton').textContent = 'Return to Platform';
+                document.getElementById('retryButton').onclick = () => window.location.href = '/';
+            } else {
+                status.className = 'status offline';
+                statusText.textContent = t.statusTextOffline;
+                statusDesc.textContent = t.statusDescOffline;
+            }
+        }
+
+        // Check connection function
+        function checkConnection() {
+            if (navigator.onLine) {
+                // Try to actually reach the server
+                fetch('/', { method: 'HEAD', cache: 'no-cache' })
+                    .then(() => {
+                        window.location.href = '/';
+                    })
+                    .catch(() => {
+                        alert(translations[currentLanguage].statusDescOffline);
+                    });
+            } else {
+                alert(translations[currentLanguage].statusDescOffline);
+            }
+        }
+
+        // Listen for online/offline events
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+
+        // Initialize
+        updateText();
+        updateStatus();
+
+        // Try to access cached games
+        if ('caches' in window) {
+            caches.open('game-assets-v1.0.0').then(cache => {
+                cache.keys().then(keys => {
+                    if (keys.length > 0) {
+                        console.log('Cached games available:', keys.length);
+                    }
+                });
+            });
+        }
+
+        // Check if we can access IndexedDB for saved games
+        if ('indexedDB' in window) {
+            const request = indexedDB.open('OdishaEducationGameDB', 1);
+            request.onsuccess = function(event) {
+                const db = event.target.result;
+                console.log('IndexedDB available with saved game data');
+                
+                // Could potentially show saved games here
+                const transaction = db.transaction(['games'], 'readonly');
+                const store = transaction.objectStore('games');
+                const countRequest = store.count();
+                
+                countRequest.onsuccess = function() {
+                    if (countRequest.result > 0) {
+                        console.log('Saved games available:', countRequest.result);
+                    }
+                };
+            };
+        }
+    </script>
+</body>
+</html>

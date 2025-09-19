@@ -1,0 +1,804 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --font-sans: var(--font-inter);
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    /* Updated color system for rural Odisha students with warm, engaging colors */
+    --background: 0 0% 100%; /* Clean white background */
+    --foreground: 220 13% 22%; /* Dark gray for text */
+    --card: 0 0% 99%; /* Soft card background */
+    --card-foreground: 220 13% 22%; /* Dark text on cards */
+    --popover: 0 0% 99%; /* Soft background for popovers */
+    --popover-foreground: 220 13% 22%; /* Dark text in popovers */
+    --primary: 0 84% 60%; /* Warm red primary color */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
+    --secondary: 43 96% 56%; /* Bright amber accent */
+    --secondary-foreground: 0 0% 98%; /* White text on secondary */
+    --muted: 0 0% 96%; /* Light muted background */
+    --muted-foreground: 220 13% 45%; /* Muted text */
+    --accent: 43 96% 56%; /* Amber accent color */
+    --accent-foreground: 0 0% 98%; /* White text on accent */
+    --destructive: 0 84% 60%; /* Red for errors */
+    --destructive-foreground: 0 0% 98%; /* White text for errors */
+    --border: 220 13% 91%; /* Light border */
+    --input: 0 0% 100%; /* White input background */
+    --ring: 0 84% 60%; /* Primary ring color */
+    --chart-1: 142 76% 36%; /* Green chart color */
+    --chart-2: 43 96% 56%; /* Amber chart color */
+    --chart-3: 0 84% 60%; /* Red chart color */
+    --chart-4: 262 83% 58%; /* Purple chart color */
+    --chart-5: 221 83% 53%; /* Blue chart color */
+    --radius: 0.75rem; /* Rounded corners for friendly feel */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 13% 22%;
+    --sidebar-primary: 0 84% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 43 96% 56%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 0 84% 60%;
+  }
+  .dark {
+    /* Dark mode colors optimized for rural students */
+    --background: 220 13% 9%; /* Dark background */
+    --foreground: 0 0% 95%; /* Light text */
+    --card: 220 13% 12%; /* Dark card background */
+    --card-foreground: 0 0% 95%; /* Light text on cards */
+    --popover: 220 13% 12%; /* Dark popover background */
+    --popover-foreground: 0 0% 95%; /* Light text in popovers */
+    --primary: 0 84% 60%; /* Warm red primary */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
+    --secondary: 43 96% 56%; /* Bright amber accent */
+    --secondary-foreground: 220 13% 9%; /* Dark text on secondary */
+    --muted: 220 13% 15%; /* Dark muted background */
+    --muted-foreground: 220 13% 65%; /* Light muted text */
+    --accent: 43 96% 56%; /* Amber accent */
+    --accent-foreground: 220 13% 9%; /* Dark text on accent */
+    --destructive: 0 84% 60%; /* Red for errors */
+    --destructive-foreground: 0 0% 98%; /* White text for errors */
+    --border: 220 13% 20%; /* Dark border */
+    --input: 220 13% 15%; /* Dark input background */
+    --ring: 0 84% 60%; /* Primary ring color */
+    --chart-1: 142 76% 36%; /* Green chart color */
+    --chart-2: 43 96% 56%; /* Amber chart color */
+    --chart-3: 0 84% 60%; /* Red chart color */
+    --chart-4: 262 83% 58%; /* Purple chart color */
+    --chart-5: 221 83% 53%; /* Blue chart color */
+    --sidebar-background: 220 13% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 84% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 43 96% 56%;
+    --sidebar-accent-foreground: 220 13% 9%;
+    --sidebar-border: 220 13% 20%;
+    --sidebar-ring: 0 84% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Professional custom animations and components */
+@layer components {
+  /* Glass morphism effect for cards */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-border/50 shadow-xl transition-all duration-300;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .glass-card:hover {
+    @apply shadow-2xl border-primary/30;
+    transform: translateY(-2px);
+  }
+
+  /* Professional button styles */
+  .btn-professional {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .btn-professional::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+
+  .btn-professional:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 cursor-pointer;
+  }
+
+  .card-hover:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Smooth underline animation */
+  .underline-animation {
+    @apply relative;
+  }
+
+  .underline-animation::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .underline-animation:hover::after {
+    @apply w-full;
+  }
+
+  /* Badge glow effect */
+  .badge-glow {
+    @apply relative;
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply bg-gradient-to-r from-muted via-muted-foreground/10 to-muted;
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  /* Celebration animations */
+  .celebration-bounce {
+    animation: celebration-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .shake-animation {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  /* Smooth fade in */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  /* Slide animations */
+  .slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+  }
+
+  .slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  .slide-in-up {
+    animation: slideInUp 0.5s ease-out;
+  }
+
+  /* Professional input focus */
+  .input-focus {
+    @apply transition-all duration-300;
+  }
+
+  .input-focus:focus {
+    @apply ring-2 ring-primary/50 border-primary;
+    transform: translateY(-1px);
+  }
+
+  /* Smooth scroll indicator */
+  .scroll-indicator {
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+}
+
+/* Professional keyframe animations */
+@keyframes celebration-bounce {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  75% {
+    transform: translateY(-15px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5),
+                0 0 20px hsl(var(--primary) / 0.3),
+                0 0 30px hsl(var(--primary) / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.8),
+                0 0 40px hsl(var(--primary) / 0.5),
+                0 0 60px hsl(var(--primary) / 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    transform: translateX(-5px) rotate(-1deg);
+  }
+  20% {
+    transform: translateX(5px) rotate(1deg);
+  }
+  30% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(3px) rotate(1deg);
+  }
+  50% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  60% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  70% {
+    transform: translateX(-1px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(1px) rotate(1deg);
+  }
+  90% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Particle animation for background */
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Accessibility improvements for rural students */
+@media (prefers-reduced-motion: reduce) {
+  .celebration-bounce,
+  .pulse-glow,
+  .float-animation,
+  .shake-animation {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 220 13% 50%;
+    --ring: 0 84% 40%;
+  }
+  .dark {
+    --border: 220 13% 70%;
+    --ring: 0 84% 70%;
+  }
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/70;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-primary/20 text-primary;
+}
+
+/* Focus visible styles for better accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Gaming Card Styles */
+.game-card {
+  @apply relative overflow-hidden rounded-2xl p-6 shadow-2xl transition-all duration-500;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255,255,255,0.2);
+  position: relative;
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.6s ease-out;
+  z-index: 1;
+}
+
+.game-card:hover::before {
+  left: 100%;
+}
+
+.game-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent, rgba(255,255,255,0.1));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.game-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* Game Card Content Styling */
+.game-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.game-card-icon {
+  @apply text-6xl mb-4 transition-all duration-300;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.game-card:hover .game-card-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+.game-card-title {
+  @apply text-xl font-bold text-white mb-3 transition-all duration-300;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.game-card:hover .game-card-title {
+  transform: translateY(-2px);
+  text-shadow: 0 4px 8px rgba(0,0,0,0.6);
+}
+
+.game-card-description {
+  @apply text-sm text-gray-200 mb-6 leading-relaxed transition-all duration-300;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.game-card:hover .game-card-description {
+  color: rgba(255,255,255,0.9);
+}
+
+/* Difficulty Badge Styles */
+.difficulty-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.difficulty-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.difficulty-badge:hover::before {
+  left: 100%;
+}
+
+.difficulty-beginner {
+  @apply bg-green-100 text-green-800 border border-green-300;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+}
+
+.difficulty-beginner:hover {
+  @apply bg-green-200 text-green-900 border-green-400;
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+  transform: scale(1.05);
+}
+
+.difficulty-intermediate {
+  @apply bg-yellow-100 text-yellow-800 border border-yellow-300;
+  box-shadow: 0 2px 4px rgba(234, 179, 8, 0.2);
+}
+
+.difficulty-intermediate:hover {
+  @apply bg-yellow-200 text-yellow-900 border-yellow-400;
+  box-shadow: 0 4px 8px rgba(234, 179, 8, 0.3);
+  transform: scale(1.05);
+}
+
+.difficulty-advanced {
+  @apply bg-red-100 text-red-800 border border-red-300;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.difficulty-advanced:hover {
+  @apply bg-red-200 text-red-900 border-red-400;
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+  transform: scale(1.05);
+}
+
+/* XP and Level Animations */
+.xp-bar {
+  @apply relative h-6 bg-gray-800 rounded-full overflow-hidden;
+}
+
+.xp-fill {
+  @apply absolute inset-y-0 left-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full;
+  animation: xp-glow 2s ease-in-out infinite;
+}
+
+@keyframes xp-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+  }
+}
+
+/* Game Button Styles */
+.game-button {
+  @apply relative px-6 py-3 font-bold text-white rounded-xl overflow-hidden transition-all duration-300;
+  background: linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to));
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+
+.game-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.6s ease-out;
+}
+
+.game-button:hover::before {
+  left: 100%;
+}
+
+.game-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.game-button:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+.game-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.game-button:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.game-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.game-button:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Leaderboard Styles */
+.leaderboard-item {
+  @apply flex items-center justify-between p-4 rounded-lg bg-gray-800/50 backdrop-blur border border-gray-700/50 transition-all duration-300;
+}
+
+.leaderboard-item:hover {
+  @apply bg-gray-700/50 border-gray-600/50;
+  transform: translateX(4px);
+}
+
+.rank-medal {
+  @apply w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm;
+}
+
+.rank-1 {
+  @apply bg-gradient-to-br from-yellow-400 to-yellow-600 text-white;
+}
+
+.rank-2 {
+  @apply bg-gradient-to-br from-gray-300 to-gray-500 text-white;
+}
+
+.rank-3 {
+  @apply bg-gradient-to-br from-orange-400 to-orange-600 text-white;
+}
+
+/* Game Loading Animation */
+.game-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.game-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Professional text shadow */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Enhanced game grid animations */
+.game-grid-enter {
+  animation: gameGridEnter 0.6s ease-out forwards;
+}
+
+@keyframes gameGridEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Floating particles background */
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  animation: float-particle 8s linear infinite;
+}
+
+.floating-particles::before {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.floating-particles::after {
+  left: 80%;
+  animation-delay: 4s;
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
